@@ -7,6 +7,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddKafkaComponents();
+builder.Services.AddHandlers();
 
 builder.AddKafkaSettings();
 

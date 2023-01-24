@@ -16,8 +16,4 @@
     <ProjectReference Include="..\KafkaWithAvro.Infra.Kafka\KafkaWithAvro.Infra.Kafka.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
