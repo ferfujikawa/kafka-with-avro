@@ -10,6 +10,10 @@
     <ProjectReference Include="..\KafkaWithAvro.Domain\KafkaWithAvro.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SchemaRegistry\Avros\Models\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

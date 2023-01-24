@@ -1,0 +1,10 @@
+﻿{
+	"namespace": "KafkaWithAvro.Infra.Kafka.SchemaRegistry.Avros.Models",
+	"type": "record",
+	"name": "CreatedUser",
+	"fields": [
+		{"name" : "Id", "type": "string"},
+		{"name" : "Name", "type": "string"},
+		{"name" : "Email", "type": "string"}
+	]
+}
