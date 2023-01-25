@@ -28,7 +28,17 @@ builder.ConfigureServices(services =>
 
     services.AddSingleton(typeof(IConsumer<>), typeof(Consumer<>));
 
-    services.AddHostedService<ConsumeCreatedUserService>();
+    services.AddSingleton<ConsumeCreatedUserService>();
 });
 
-builder.Start();
+using (var host = builder.Build())
+{
+    await host.StartAsync();
+    var lifetime = host.Services.GetRequiredService<IHostApplicationLifetime>();
+
+    var service = host.Services.GetRequiredService<ConsumeCreatedUserService>();
+    await service.StartAsync(lifetime.ApplicationStopping);
+
+    lifetime.StopApplication();
+    await host.WaitForShutdownAsync();
+}
