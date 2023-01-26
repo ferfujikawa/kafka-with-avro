@@ -39,6 +39,5 @@ using (var host = builder.Build())
     var service = host.Services.GetRequiredService<ConsumeCreatedUserService>();
     await service.StartAsync(lifetime.ApplicationStopping);
 
-    lifetime.StopApplication();
-    await host.WaitForShutdownAsync();
+    await host.WaitForShutdownAsync(lifetime.ApplicationStopping);
 }
