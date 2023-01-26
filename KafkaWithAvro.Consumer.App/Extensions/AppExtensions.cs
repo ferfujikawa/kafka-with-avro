@@ -10,6 +10,7 @@ using KafkaWithAvro.Infra.Kafka.SchemaRegistry.Deserializers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using KafkaWithAvro.Consumer.App.Settings;
 
 namespace KafkaWithAvro.Consumer.App.Extensions
 {
@@ -18,9 +19,20 @@ namespace KafkaWithAvro.Consumer.App.Extensions
         public static void AddKafkaSettings(this IServiceCollection services, IConfiguration configuration)
         {
             var kafkaConfig = new KafkaConfig();
-            configuration.GetSection("KafkaSettings").Bind(kafkaConfig);
-            services.AddSingleton(x => kafkaConfig);
+            configuration
+                .GetSection("KafkaSettings")
+                .Bind(kafkaConfig);
+            services.AddSingleton(kafkaConfig);
             services.AddSingleton<ISchemaRegistryClient>(x => new SchemaRegistryClient(kafkaConfig.SchemaServer));
+        }
+
+        public static void AddConsumerSettings(this IServiceCollection services, IConfiguration configuration)
+        {
+            var consumerSetting = new ConsumerSettings();
+            configuration
+                .GetSection("ConsumerSettings")
+                .Bind(consumerSetting);
+            services.AddSingleton(consumerSetting);
         }
 
         public static void AddKafkaComponents(this IServiceCollection services)

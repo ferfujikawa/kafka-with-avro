@@ -13,6 +13,7 @@ var config = new ConfigurationBuilder()
 builder.ConfigureServices(services =>
 {
     services.AddKafkaSettings(config);
+    services.AddConsumerSettings(config);
     services.AddKafkaComponents();
     services.AddServices();
 });
